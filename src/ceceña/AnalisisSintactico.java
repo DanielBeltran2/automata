@@ -260,7 +260,7 @@ public class AnalisisSintactico {
 	}
 
 	private boolean Tipo (String token) {
-		String v[] = {"int","boolean"};
+		String v[] = {"int","boolean","String"};
 
 		for(int i=0;i<v.length;i++) {
 			if(token.equals(v[i])) {

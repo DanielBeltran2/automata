@@ -85,7 +85,7 @@ public class AnalisisLexico {
 	}
 
 	private void Tipo (String token) {
-		String v[] = {"int","boolean"};
+		String v[] = {"int","boolean","String"};
 
 		if(bandera) {
 			for(int i=0;i<v.length;i++) {
