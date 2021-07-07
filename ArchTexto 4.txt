@@ -1,0 +1,1 @@
+public class ejemplo_23 {  public int ab_12 = false; public boolean ab_13 = 3; public String ab_13 = 4;}

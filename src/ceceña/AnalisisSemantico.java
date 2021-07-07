@@ -1,33 +1,30 @@
 package ceceña;
 
-import java.util.Iterator;
-
 public class AnalisisSemantico {
 	/*
 	 * Mira w, nombre es el nombre de la variable tipo es el tipo de la variable
 	 * vamos a comparar el token con el nombre
 	 */
 	private Lista<String> tokens;
-	private String errores[], nombres[], tipos[], tamaños[], linea[], iguales[], palabra[];
-	private int contErrores, contNombres, pos, contLinea, repe;
+	private String errores[], nombres[], tipos[], tamaños[], linea[], iguales[], palabra[], errorLinea[];
+	private int contErrores, contNombres, pos, repe;
 
 	public AnalisisSemantico(Lista<String> t, String nombres[], String tipos[], String tamaños[], int contNombres) {
 		tokens = t;
 		contErrores = -1;
-		contLinea = -1;
 		pos = 0;
-		int repe = 0;
-		this.contLinea = contLinea;
-		this.contNombres = contNombres;
+		iguales = nombres;
+
 		errores = new String[tokens.length()];
 		linea = new String[tokens.length()];
-
 		palabra = new String[tokens.length()];
+		errorLinea = new String[tokens.length()];
 
 		this.nombres = nombres;
 		this.tipos = tipos;
 		this.tamaños = tamaños;
-		iguales = nombres;
+		this.contNombres = contNombres;
+
 	}
 
 	public void Analizador() {
@@ -68,8 +65,17 @@ public class AnalisisSemantico {
 		}
 
 		System.out.println("\n\n*****Errores encontrados*****");
+		System.out.println();
+		ContarErrorLinea();
+		for (int i = 0; i < errorLinea.length; i++) {
+			if (errorLinea[i] == null) {
 
-		for (int i = 0; i < contErrores + 1; i++) {
+			} else {
+				System.out.println(errorLinea[i]);
+			}
+
+		}
+		/*for (int i = 0; i < contErrores + 1; i++) {
 			if (errores[i].equals("=")) {
 				System.out.printf("\nHubo un error de signo en la linea " + " ** " + " el dato es " + errores[i]);
 			}
@@ -82,7 +88,7 @@ public class AnalisisSemantico {
 			if (errores[i].equals("{") || errores[i].equals("}")) {
 				System.out.printf("\nHay parentesis de mas en la linea " + " ** " + " el dato es " + errores[i]);
 			}
-		}
+		}*/
 		System.out.println();
 		iguales();
 		for (int i = 0; i < palabra.length; i++) {
@@ -301,7 +307,7 @@ public class AnalisisSemantico {
 	}
 
 	private boolean Tipo(String token) {
-		String v[] = { "int", "boolean","String" };
+		String v[] = { "int", "boolean", "String" };
 
 		for (int i = 0; i < v.length; i++) {
 			if (token.equals(v[i])) {
@@ -501,4 +507,19 @@ public class AnalisisSemantico {
 		}
 	}
 
+	public void ContarErrorLinea() {
+		for (int i = 0; i < errores.length; i++) {
+			for (int j = 0; j < errores.length; j++) {
+				if (nombres[i] == null) {
+					break;
+				}
+				if (nombres[i].equals(errores[j])) {
+
+					errorLinea[i] = "hay un error en la linea: " + (i + 1) + " ,el nombre del error es: " + nombres[i];
+				}
+
+			}
+		}
+
+	}
 }
