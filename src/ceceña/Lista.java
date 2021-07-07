@@ -2,11 +2,11 @@ package ceceña;
 
 public class Lista <T>{
 	
-	private Nodo<T> Frente,Fin;
+	private Nodo<T> Detras,Frente,Fin;
 	private T       Dr;
 	
 	public Lista() {
-		Frente=Fin=null;
+		Frente=Fin=Detras=null;
 		Dr=null;
 	}
 	public boolean InsertarFin(T Dato) {

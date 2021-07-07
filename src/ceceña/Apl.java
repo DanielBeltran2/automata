@@ -154,6 +154,9 @@ public class Apl {
 
 		As.Analizador();
 		
+		AnalisisSemantico Ase = new AnalisisSemantico(tokens,nombres,tipos,tamaños,Al.getContNombres());
+		
+		Ase.Analizador();
 	}
 
 

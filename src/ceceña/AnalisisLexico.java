@@ -174,9 +174,9 @@ public class AnalisisLexico {
 				}
 			}
 
-			if(QuitarRepetidos(token)) {
+			/*if(QuitarRepetidos(token)) {
 				return;
-			}
+			}*/
 
 			contNombres++;
 			nombres[contNombres]=token;
@@ -184,14 +184,14 @@ public class AnalisisLexico {
 
 	}
 	
-	private boolean QuitarRepetidos(String token) {
+	private void QuitarRepetidos(String token) {
 		
 		for(int i=0;i<contNombres+1;i++) {
 			if(token.equals(nombres[i])) {
-				return true;
+				return ;
 			}	
 		}
-		return false;
+		return;
 	}
 
 	public int getContNombres() {
