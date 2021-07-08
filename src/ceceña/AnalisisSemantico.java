@@ -1,12 +1,9 @@
 package ceceña;
 
 public class AnalisisSemantico {
-	/*
-	 * Mira w, nombre es el nombre de la variable tipo es el tipo de la variable
-	 * vamos a comparar el token con el nombre
-	 */
+
 	private Lista<String> tokens;
-	private String errores[], nombres[], tipos[], tamaños[], linea[], iguales[], palabra[], errorLinea[];
+	private String errores[], nombres[], tipos[], tamaños[], iguales[], palabra[], errorLinea[];
 	private int contErrores, contNombres, pos, repe;
 
 	public AnalisisSemantico(Lista<String> t, String nombres[], String tipos[], String tamaños[], int contNombres) {
@@ -16,7 +13,6 @@ public class AnalisisSemantico {
 		iguales = nombres;
 
 		errores = new String[tokens.length()];
-		linea = new String[tokens.length()];
 		palabra = new String[tokens.length()];
 		errorLinea = new String[tokens.length()];
 
@@ -46,11 +42,11 @@ public class AnalisisSemantico {
 		} else {
 
 			System.out.println("\n\n*****Tabla de Símbolos*****");
-			System.out.print("\n|          Nombre          |      Tipo      |      VALOR      |");
+			System.out.print("\n|Posicion |     Nombre      |      Tipo      |      VALOR      |");
 			System.out.print("\n----------------------------------------------------------------");
 			for (int i = 0; i < contNombres + 1; i++) {
-				System.out.printf("\n%-23s %-16s %-18s %-1s", "|  " + "   " + nombres[i], "   |   " + tipos[i],
-						"   |   " + tamaños[i], "   |");
+				System.out.printf("\n%-23s %-16s %-18s %-1s", "| " + (i + 1) + "|        " + nombres[i],
+						"   |   " + tipos[i], "   |   " + tamaños[i], "   |");
 			}
 			System.out.print("\n----------------------------------------------------------------\n\n");
 
@@ -75,20 +71,7 @@ public class AnalisisSemantico {
 			}
 
 		}
-		/*for (int i = 0; i < contErrores + 1; i++) {
-			if (errores[i].equals("=")) {
-				System.out.printf("\nHubo un error de signo en la linea " + " ** " + " el dato es " + errores[i]);
-			}
-			if (errores[i].equals("(") || errores[i].equals(")")) {
-				System.out.printf("\nHubo un error de parentesis en la linea " + " ** " + " el dato es " + errores[i]);
-			}
-			if (errores[i].equals("int") || errores[i].equals("boolean")) {
-				System.out.printf("\nHubo un error de variable en la linea " + " ** " + " el dato es " + errores[i]);
-			}
-			if (errores[i].equals("{") || errores[i].equals("}")) {
-				System.out.printf("\nHay parentesis de mas en la linea " + " ** " + " el dato es " + errores[i]);
-			}
-		}*/
+
 		System.out.println();
 		iguales();
 		for (int i = 0; i < palabra.length; i++) {
@@ -481,8 +464,10 @@ public class AnalisisSemantico {
 				if (nombres[i] == null) {
 					break;
 				} else {
-					palabra[i] = "se repite " + iguales[i] + " " + repe + " veces";
-
+					if (tipos[i] == null) {
+						palabra[i] = "se repite " + iguales[i] + " " + repe
+								+ " veces, se esta declarando varias veces en la posicion " + (i + 1);
+					}
 				}
 			}
 			continue;
@@ -502,7 +487,6 @@ public class AnalisisSemantico {
 
 					}
 				}
-
 			}
 		}
 	}
@@ -514,8 +498,14 @@ public class AnalisisSemantico {
 					break;
 				}
 				if (nombres[i].equals(errores[j])) {
+					if (tipos[i] == null) {
+						errorLinea[i] = "hay un error en la linea: " + (i + 1) + " ,el nombre del error es: "
+								+ nombres[i] + " la variable no se ha inicializado";
+					} else {
 
-					errorLinea[i] = "hay un error en la linea: " + (i + 1) + " ,el nombre del error es: " + nombres[i];
+						errorLinea[i] = "hay un error en la linea: " + (i + 1) + " ,el nombre del error es: "
+								+ nombres[i] + " la variable es de tipo : " + tipos[i];
+					}
 				}
 
 			}
