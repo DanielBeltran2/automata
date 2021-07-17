@@ -25,18 +25,11 @@ public class main {
 			abo.insertar("-");
 			abo.insertar("B");
 
-			// abo.insertar("("); // abo.insertar("(");
-
-			// abo.insertar(")");
-
-			// abo.insertar(")");
 			abo.iniciar();
-			System.out.println("Impresion entreorden: ");
+			System.out.println("operacion original(OG): ");
 			abo.imprimirEntre();
-			System.out.println("Impresion preorden: ");
-			abo.imprimirPre();
-			System.out.println("Impresion post: ");
-			abo.imprimirPost();
+			
+			
 
 			System.out.println("Impresion cuadruplos: ");
 			abo.contarSignos();

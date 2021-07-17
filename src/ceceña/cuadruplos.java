@@ -62,19 +62,6 @@ public class cuadruplos {
 		System.out.println();
 	}
 
-	private void imprimirPre(Nodo reco) {
-		if (reco != null) {
-			System.out.print(reco.info + " ");
-			imprimirPre(reco.izq);
-			imprimirPre(reco.der);
-		}
-	}
-
-	public void imprimirPre() {
-		imprimirPre(raiz);
-		System.out.println();
-	}
-
 	private void imprimircuadruplos(Nodo reco) {
 		System.out.println("owo");
 		if (reco != null) {
@@ -162,30 +149,15 @@ public class cuadruplos {
 	public void iniciar() {
 		DK = new String[x];
 		Car = new String[x];
-
-	}
-
-	private void imprimirPost(Nodo reco) {
-		if (reco != null) {
-			imprimirPost(reco.izq);
-			imprimirPost(reco.der);
-			System.out.print(reco.info + " ");
-		}
-	}
-
-	public void imprimirPost() {
-		imprimirPost(raiz);
-		System.out.println();
-	}
-
-	private String operacion(Nodo reco) {
-		return reco.info;
 	}
 
 	public void imprime() {
 		for (int i = 0; i < DK.length; i++) {
+			if (DK[i] == null) {
 
-			System.out.println(DK[i]);
+			} else {
+				System.out.println(DK[i]);
+			}
 
 		}
 	}
