@@ -1,12 +1,8 @@
 package ceceña;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class main {
-	public static ArrayList<Cuadruple> cuadruples;
-	public static Programa Arbol;
 
 	public static void main(String[] args) {
 
@@ -18,30 +14,34 @@ public class main {
 			break;
 		case 2:
 
-			cuadruples = Generador.generarCod(Arbol);
-			int c2 = 0;
-			for (Cuadruple c : cuadruples)
-				System.out.println((++c2) + "\t" + c.getOperador() + "\t" + c.getArg1() + "\t" + c.getArg2() + "\t"
-						+ c.getResultado());
+			cuadruplos abo = new cuadruplos();
+			abo.insertar("F");
+			abo.insertar("-");
+			abo.insertar("E");
+			abo.insertar("/");
+			abo.insertar("D");
+			abo.insertar("*");
+			abo.insertar("C");
+			abo.insertar("-");
+			abo.insertar("B");
 
-			System.out.println("Programa compilado correctamente");
-			/*
-			 * cuadruplos abo = new cuadruplos(); abo.insertar("F"); abo.insertar("-");
-			 * abo.insertar("E"); abo.insertar("/"); abo.insertar("D"); abo.insertar("*");
-			 * abo.insertar("C"); abo.insertar("-"); abo.insertar("B");
-			 * 
-			 * // abo.insertar("("); // abo.insertar("(");
-			 * 
-			 * // abo.insertar(")");
-			 * 
-			 * // abo.insertar(")");
-			 * 
-			 * System.out.println("Impresion entreorden: "); abo.imprimirEntre();
-			 * System.out.println("Impresion preorden: "); abo.imprimirPre();
-			 * System.out.println("Impresion post: "); abo.imprimirPost();
-			 * 
-			 * System.out.println("Impresion cuadruplos: "); abo.iniciar(); abo.imprime();
-			 */
+			// abo.insertar("("); // abo.insertar("(");
+
+			// abo.insertar(")");
+
+			// abo.insertar(")");
+			abo.iniciar();
+			System.out.println("Impresion entreorden: ");
+			abo.imprimirEntre();
+			System.out.println("Impresion preorden: ");
+			abo.imprimirPre();
+			System.out.println("Impresion post: ");
+			abo.imprimirPost();
+
+			System.out.println("Impresion cuadruplos: ");
+			abo.contarSignos();
+			abo.imprime();
+
 			break;
 		}
 	}

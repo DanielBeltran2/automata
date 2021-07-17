@@ -2,8 +2,9 @@ package ceceña;
 
 public class cuadruplos {
 
-	private String signos, DK[], Car;
-	private int contSignos, x, y;
+	private String signos, DK[];
+	String[] Car;
+	private int contSignos, x, y, z;
 
 	class Nodo {
 		String info;
@@ -15,6 +16,7 @@ public class cuadruplos {
 	public cuadruplos() {
 		y = 0;
 		x = 0;
+		z = 0;
 		contSignos = 0;
 		raiz = null;
 	}
@@ -49,6 +51,8 @@ public class cuadruplos {
 		if (reco != null) {
 			imprimirEntre(reco.izq);
 			System.out.print(reco.info + " ");
+			Car[y] = reco.info;
+			y++;
 			imprimirEntre(reco.der);
 		}
 	}
@@ -87,60 +91,77 @@ public class cuadruplos {
 	}
 
 	public void contarSignos() {
-		contarSignos(raiz);
-		System.out.println();
+
+		String izquierda, derecha;
+		for (int i = 0; i < Car.length; i++) {
+			try {
+				if (Car[i].equals("*")) {
+					try {
+						izquierda = Car[i + 1];
+						derecha = Car[i - 1];
+						DK[z] = "DK " + (z + 1) + " * " + " " + izquierda + " " + derecha;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+					z++;
+					Car[i] = "DK" + z;
+					Car[i + 1] = "DK" + z;
+					Car[i - 1] = "DK" + z;
+
+				}
+				if (Car[i].equals("/")) {
+					try {
+						izquierda = Car[i + 1];
+						derecha = Car[i - 1];
+						DK[z] = "DK " + (z + 1) + " / " + " " + izquierda + " " + derecha;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+					z++;
+					Car[i] = "DK" + z;
+					Car[i + 1] = "DK" + z;
+					Car[i - 1] = "DK" + z;
+
+				}
+				if (Car[i].equals("+")) {
+					try {
+						izquierda = Car[i + 1];
+						derecha = Car[i - 1];
+						DK[z] = "DK " + (z + 1) + " + " + " " + izquierda + " " + derecha;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+					z++;
+					Car[i] = "DK" + z;
+					Car[i + 1] = "DK" + z;
+					Car[i - 1] = "DK" + z;
+
+				}
+				if (Car[i].equals("-")) {
+					try {
+						izquierda = Car[i + 1];
+						derecha = Car[i - 1];
+						DK[z] = "DK " + (z + 1) + " - " + " " + izquierda + " " + derecha;
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+
+					z++;
+					Car[i] = "DK" + z;
+					Car[i + 1] = "DK" + z;
+					Car[i - 1] = "DK" + z;
+
+				}
+			} catch (NullPointerException e) {
+
+			}
+
+		}
 	}
 
 	public void iniciar() {
 		DK = new String[x];
-		contarSignos();
-	}
-
-	private void contarSignos(Nodo reco) {
-
-		String izquierda, derecha;
-		if (reco != null) {
-
-			contarSignos(reco.izq);
-			contarSignos(reco.der);
-			if (reco.info == "*" || reco.info == "/" || reco.info == "+" || reco.info == "-") {
-				signos = reco.info;
-			}
-
-		}
-		while (reco != null) {
-
-			if (signos == "*") {
-				izquierda = operacion(reco.izq);
-				derecha = operacion(reco.der);
-				DK[y] = "DK " + (y + 1) + signos + " " + izquierda + " " + derecha;
-				y++;
-				break;
-
-			}
-			if (signos == "/") {
-				izquierda = operacion(reco.izq);
-				derecha = operacion(reco.der);
-				DK[y] = "DK " + (y + 1) + signos + " " + izquierda + " " + derecha;
-				y++;
-				break;
-
-			}
-			if (signos == "+") {
-				izquierda = operacion(reco.izq);
-				derecha = operacion(reco.der);
-				DK[y] = "DK " + (y + 1) + signos + " " + izquierda + " " + derecha;
-				y++;
-				break;
-			}
-			if (signos == "-") {
-				izquierda = operacion(reco.izq);
-				derecha = operacion(reco.der);
-				DK[y] = "DK " + (y + 1) + signos + " " + izquierda + " " + derecha;
-				y++;
-				break;
-			}
-		}
+		Car = new String[x];
 
 	}
 
@@ -163,11 +184,9 @@ public class cuadruplos {
 
 	public void imprime() {
 		for (int i = 0; i < DK.length; i++) {
-			if (DK[i] == null) {
 
-			} else {
-				System.out.println(DK[i]);
-			}
+			System.out.println(DK[i]);
+
 		}
 	}
 }
