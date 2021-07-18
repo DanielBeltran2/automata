@@ -80,59 +80,17 @@ public class cuadruplos {
 	public void contarSignos() {
 
 		String izquierda, derecha;
+
 		for (int i = 0; i < Car.length; i++) {
 			try {
-				if (Car[i].equals("*")) {
-					try {
-						izquierda = Car[i + 1];
-						derecha = Car[i - 1];
-						DK[z] = "DK " + (z + 1) + " * " + " " + izquierda + " " + derecha;
-					} catch (ArrayIndexOutOfBoundsException e) {
-						break;
-					}
-					z++;
-					Car[i] = "DK" + z;
-					Car[i + 1] = "DK" + z;
-					Car[i - 1] = "DK" + z;
-
-				}
-				if (Car[i].equals("/")) {
-					try {
-						izquierda = Car[i + 1];
-						derecha = Car[i - 1];
-						DK[z] = "DK " + (z + 1) + " / " + " " + izquierda + " " + derecha;
-					} catch (ArrayIndexOutOfBoundsException e) {
-						break;
-					}
-					z++;
-					Car[i] = "DK" + z;
-					Car[i + 1] = "DK" + z;
-					Car[i - 1] = "DK" + z;
-
-				}
-				if (Car[i].equals("+")) {
-					try {
-						izquierda = Car[i + 1];
-						derecha = Car[i - 1];
-						DK[z] = "DK " + (z + 1) + " + " + " " + izquierda + " " + derecha;
-					} catch (ArrayIndexOutOfBoundsException e) {
-						break;
-					}
-					z++;
-					Car[i] = "DK" + z;
-					Car[i + 1] = "DK" + z;
-					Car[i - 1] = "DK" + z;
-
-				}
 				if (Car[i].equals("-")) {
 					try {
 						izquierda = Car[i + 1];
 						derecha = Car[i - 1];
-						DK[z] = "DK " + (z + 1) + " - " + " " + izquierda + " " + derecha;
+						DK[z] = "DK" + (z + 1) + " - " + " " + izquierda + " " + derecha;
 					} catch (ArrayIndexOutOfBoundsException e) {
 						break;
 					}
-
 					z++;
 					Car[i] = "DK" + z;
 					Car[i + 1] = "DK" + z;
@@ -143,7 +101,71 @@ public class cuadruplos {
 
 			}
 
+			for (int a = 0; a < Car.length; a++) {
+				try {
+					if (Car[a].equals("+")) {
+						try {
+							izquierda = Car[a + 1];
+							derecha = Car[a - 1];
+							DK[z] = "DK" + (z + 1) + " + " + " " + izquierda + " " + derecha;
+						} catch (ArrayIndexOutOfBoundsException e) {
+							break;
+						}
+						z++;
+						Car[a] = "DK" + z;
+						Car[a + 1] = "DK" + z;
+						Car[a - 1] = "DK" + z;
+					}
+				} catch (NullPointerException e) {
+
+				}
+
+				for (int b = 0; b < Car.length; b++) {
+					try {
+						if (Car[b].equals("/")) {
+							try {
+								izquierda = Car[b + 1];
+								derecha = Car[b - 1];
+								DK[z] = "DK" + (z + 1) + " / " + " " + izquierda + " " + derecha;
+							} catch (ArrayIndexOutOfBoundsException e) {
+								break;
+							}
+							z++;
+							Car[b] = "DK" + z;
+							Car[b + 1] = "DK" + z;
+							Car[b - 1] = "DK" + z;
+
+						}
+					} catch (NullPointerException e) {
+
+					}
+
+				}
+				for (int c = 0; c < Car.length; c++) {
+					try {
+						if (Car[c].equals("*")) {
+							try {
+								izquierda = Car[c + 1];
+								derecha = Car[c - 1];
+								DK[z] = "DK" + (z + 1) + " * " + " " + izquierda + " " + derecha;
+							} catch (ArrayIndexOutOfBoundsException e) {
+								break;
+							}
+
+							z++;
+							Car[c] = "DK" + z;
+							Car[c + 1] = "DK" + z;
+							Car[c - 1] = "DK" + z;
+
+						}
+					} catch (NullPointerException e) {
+
+					}
+
+				}
+			}
 		}
+
 	}
 
 	public void iniciar() {
