@@ -2,9 +2,9 @@ package ceceña;
 
 public class cuadruplos {
 
-	private String signos, DK[];
+	private String DK[], var;
 	String[] Car;
-	private int contSignos, x, y, z;
+	private int x, y, z;
 
 	class Nodo {
 		String info;
@@ -17,7 +17,7 @@ public class cuadruplos {
 		y = 0;
 		x = 0;
 		z = 0;
-		contSignos = 0;
+		var = "";
 		raiz = null;
 	}
 
@@ -85,16 +85,23 @@ public class cuadruplos {
 			try {
 				if (Car[i].equals("-")) {
 					try {
-						izquierda = Car[i + 1];
-						derecha = Car[i - 1];
+						izquierda = Car[i - 1];
+						derecha = Car[i + 1];
 						DK[z] = "DK" + (z + 1) + " - " + " " + izquierda + " " + derecha;
 					} catch (ArrayIndexOutOfBoundsException e) {
 						break;
 					}
 					z++;
+					var = "DK" + (z - 1);
 					Car[i] = "DK" + z;
 					Car[i + 1] = "DK" + z;
 					Car[i - 1] = "DK" + z;
+					for (int j = 0; j < Car.length; j++) {
+						if (Car[j].contains(var)) {
+							Car[j] = "DK" + z;
+							;
+						}
+					}
 
 				}
 			} catch (NullPointerException e) {
@@ -105,16 +112,23 @@ public class cuadruplos {
 				try {
 					if (Car[a].equals("+")) {
 						try {
-							izquierda = Car[a + 1];
-							derecha = Car[a - 1];
+							izquierda = Car[a - 1];
+							derecha = Car[a + 1];
 							DK[z] = "DK" + (z + 1) + " + " + " " + izquierda + " " + derecha;
 						} catch (ArrayIndexOutOfBoundsException e) {
 							break;
 						}
 						z++;
+						var = "DK" + (z - 1);
 						Car[a] = "DK" + z;
 						Car[a + 1] = "DK" + z;
 						Car[a - 1] = "DK" + z;
+						for (int j = 0; j < Car.length; j++) {
+							if (Car[j].contains(var)) {
+								Car[j] = "DK" + z;
+								;
+							}
+						}
 					}
 				} catch (NullPointerException e) {
 
@@ -124,17 +138,23 @@ public class cuadruplos {
 					try {
 						if (Car[b].equals("/")) {
 							try {
-								izquierda = Car[b + 1];
-								derecha = Car[b - 1];
+								izquierda = Car[b - 1];
+								derecha = Car[b + 1];
 								DK[z] = "DK" + (z + 1) + " / " + " " + izquierda + " " + derecha;
 							} catch (ArrayIndexOutOfBoundsException e) {
 								break;
 							}
 							z++;
+							var = "DK" + (z - 1);
 							Car[b] = "DK" + z;
 							Car[b + 1] = "DK" + z;
 							Car[b - 1] = "DK" + z;
-
+							for (int j = 0; j < Car.length; j++) {
+								if (Car[j].contains(var)) {
+									Car[j] = "DK" + z;
+									;
+								}
+							}
 						}
 					} catch (NullPointerException e) {
 
@@ -145,18 +165,24 @@ public class cuadruplos {
 					try {
 						if (Car[c].equals("*")) {
 							try {
-								izquierda = Car[c + 1];
-								derecha = Car[c - 1];
-								DK[z] = "DK" + (z + 1) + " * " + " " + izquierda + " " + derecha;
+								izquierda = Car[c - 1];
+								derecha = Car[c + 1];
+								DK[z] = "DK" + (z + 1) + "     * " + " " + izquierda + " " + derecha;
 							} catch (ArrayIndexOutOfBoundsException e) {
 								break;
 							}
 
 							z++;
+							var = "DK" + (z - 1);
 							Car[c] = "DK" + z;
 							Car[c + 1] = "DK" + z;
 							Car[c - 1] = "DK" + z;
-
+							for (int j = 0; j < Car.length; j++) {
+								if (Car[j].contains(var)) {
+									Car[j] = "DK" + z;
+									;
+								}
+							}
 						}
 					} catch (NullPointerException e) {
 
@@ -176,7 +202,8 @@ public class cuadruplos {
 	public void imprime() {
 		for (int i = 0; i < DK.length; i++) {
 			if (DK[i] == null) {
-
+				System.out.println("A= " + Car[1]);
+				break;
 			} else {
 				System.out.println(DK[i]);
 			}

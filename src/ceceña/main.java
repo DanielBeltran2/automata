@@ -22,7 +22,7 @@ public class main {
 			abo.insertar("D");
 			abo.insertar("*");
 			abo.insertar("C");
-			abo.insertar("-");
+			abo.insertar("+");
 			abo.insertar("B");
 
 			abo.iniciar();
@@ -32,6 +32,7 @@ public class main {
 			
 
 			System.out.println("Impresion cuadruplos: ");
+			System.out.println("Resultado Operador Operando1 Operando2  ");
 			abo.contarSignos();
 			abo.imprime();
 
