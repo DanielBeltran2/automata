@@ -12,6 +12,7 @@ public class Apl {
 		Lista<String> tokens = new Lista();
 
 		File ArchTxt = new File (txt);
+		
 
 		if (ArchTxt.exists()) {
 			try {
